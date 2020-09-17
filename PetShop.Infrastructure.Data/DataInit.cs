@@ -26,16 +26,14 @@ namespace PetShop.Infrastructure.Data
         {
             var petType = new PetType
             {
-                Type = "Giraffe"
+                Type = "Golden Retriever"
 
             };
-            _petTypeRepository.Create(petType);
-            PetTypes.Add(petType);
-
+            
             var pet1 = new Pet
             {
-                Name = "Billy Joel",
-                Type = new PetType() {Id = 1},
+                Name = "Rex",
+                Type = "Golden Retriever",
                 Color = "Golden",
                 BirthDate = new DateTime(2018, 6, 10),
                 Price = 100,
@@ -48,6 +46,7 @@ namespace PetShop.Infrastructure.Data
                 Name = "Michael Jackson",
                 Address = "JohnnyBravo Street"
             };
+            _petTypeRepository.Create(petType);
             _petRepository.Create(pet1);
             _ownerRepository.Create(owner1);
         }
