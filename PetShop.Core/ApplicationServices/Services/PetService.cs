@@ -18,7 +18,7 @@ namespace PetShop.Core.ApplicationServices.Services
             _petTypeRepo = petTypeRepository;
         }
 
-        public Pet NewPet(string name, PetType type, DateTime birthDate, DateTime soldDate, string color,
+        public Pet NewPet(string name, string type, DateTime birthDate, DateTime soldDate, string color,
             string previousOwner, double price)
         {
             var pet = new Pet()

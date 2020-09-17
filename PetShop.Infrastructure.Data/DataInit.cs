@@ -38,13 +38,13 @@ namespace PetShop.Infrastructure.Data
                 BirthDate = new DateTime(2018, 6, 10),
                 Price = 100,
                 SoldDate = new DateTime(2018, 7, 10),
-                PreviousOwner = "Johnny Bravo"
+                PreviousOwner = "FimFi"
             };
 
             var owner1 = new Owner
             {
-                Name = "Michael Jackson",
-                Address = "JohnnyBravo Street"
+                Name = "FimFi",
+                Address = "Skolegade 13"
             };
             _petTypeRepository.Create(petType);
             _petRepository.Create(pet1);
