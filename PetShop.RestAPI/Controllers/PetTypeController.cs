@@ -49,14 +49,14 @@ namespace PetShop.RestAPI.Controllers
 
         // PUT api/<PetTypeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] PetType petType)
+        public ActionResult<PetType> Put(int id, [FromBody] PetType petType)
         {
             _petTypeService.UpdatePetType(petType);
         }
 
         // DELETE api/<PetTypeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<PetType> Delete(int id)
         {
             _petTypeService.DeletePetType(id);
         }
