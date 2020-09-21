@@ -98,7 +98,8 @@ namespace PetShop.RestAPI.Controllers
             }
         }
 
-        [HttpGet("byType")]
+        [HttpGet("{name}")]
+        [Route("[action]/{name}")]
         public ActionResult<List<Owner>> GetFilteredOwners(string name)
         {
             try
