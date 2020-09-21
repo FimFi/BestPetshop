@@ -12,7 +12,7 @@ namespace PetShop.Core.ApplicationServices
 
         Pet CreatePet(Pet pet);
         List<Pet> GetPets();
-        List<Pet> GetAllByType(PetType type);
+        List<Pet> GetAllByType(string type);
         List<Pet> GetAllByPrice();
         List<Pet> GetFiveCheapestPets();
         List<Pet> GetAllByColor(string color);

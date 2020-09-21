@@ -57,21 +57,56 @@ namespace PetShop.RestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<PetType> Put(int id, [FromBody] PetType petType)
         {
-            _petTypeService.UpdatePetType(petType);
+            var updatePetType = _petTypeService.UpdatePetType(petType);
+            if (updatePetType == null)
+            {
+                return StatusCode(404, "not found bro");
+            }
+
+            try
+            {
+                return updatePetType;
+            }
+            catch (Exception g)
+            {
+                return StatusCode(500, "try again");
+            }
         }
 
         // DELETE api/<PetTypeController>/5
         [HttpDelete("{id}")]
         public ActionResult<PetType> Delete(int id)
         {
-            _petTypeService.DeletePetType(id);
+            var petType = _petTypeService.DeletePetType(id);
+            if (petType == null)
+            {
+                return StatusCode(404, "did not find pettype with id " + id);
+            }
+
+            try
+            {
+                return _petTypeService.DeletePetType(id);
+            }
+            catch (Exception g)
+            {
+                return StatusCode(500, "Task Fucked up");
+            }
+            
         }
 
-        
-        [HttpDelete{"byType"}]
+
+        [HttpGet("{type}")]
+        [Route("[action]/{type}")]
         public ActionResult<List<PetType>> getFilteredPetTypes(string type)
         {
-           
+            try
+            {
+                return _petTypeService.GetAllByPetType(type);
+            }
+            catch (Exception g)
+            {
+                return StatusCode(500, "fucked up");
+            }
         }
     }
 }

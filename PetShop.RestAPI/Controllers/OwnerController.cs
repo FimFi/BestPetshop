@@ -62,20 +62,53 @@ namespace PetShop.RestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<Owner> Put(int id, [FromBody] Owner owner)
         {
-            _ownerService.UpdateOwner(owner);
+            var updateOwner = _ownerService.UpdateOwner(owner);
+            if (updateOwner == null)
+            {
+                return StatusCode(404, "not found bro");
+            }
+
+            try
+            {
+                return updateOwner;
+            }
+            catch (Exception g)
+            {
+                return StatusCode(500, "try again");
+            }
         }
 
         // DELETE api/<PetShopController>/5
         [HttpDelete("{id}")]
         public ActionResult<Owner> Delete(int id)
         {
-            _ownerService.DeleteOwner(id);
+            var owner = _ownerService.DeleteOwner(id);
+            if (owner == null)
+            {
+                return StatusCode(404, "did not find pet with id " + id);
+            }
+
+            try
+            {
+                return _ownerService.DeleteOwner(id);
+            }
+            catch (Exception g)
+            {
+                return StatusCode(500, "Task Fucked up");
+            }
         }
 
-        [HttpDelete{"byType"}]
-        public ActionResult<List<PetType>> getFilteredOwners(string name)
+        [HttpGet("byType")]
+        public ActionResult<List<Owner>> GetFilteredOwners(string name)
         {
-           return _ownerService.GetAllByName(name);
+            try
+            {
+                return _ownerService.GetAllByName(name);
+            }
+            catch (Exception g)
+            {
+                return StatusCode(500, "fucked up");
+            }
         }
     }
 }

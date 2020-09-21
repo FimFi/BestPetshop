@@ -51,7 +51,7 @@ namespace PetShop.Core.ApplicationServices.Services
         {
             return _ownerRepo.Delete(id);
         }
-        public List<Owner> GetAllByName(string type)
+        public List<Owner> GetAllByName(string name)
         {
             var list = _ownerRepo.ReadOwners();
             var query = list.Where(owner => owner.Name.Equals(name));

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.ApplicationServices;
+using PetShop.Core.ApplicationServices.Services;
 using PetShop.Core.Entity;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -68,22 +69,53 @@ namespace PetShop.RestAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
+            var updatePet = _petService.UpdatePet(pet);
+            if (updatePet == null) 
+            {
+                return StatusCode(404, "not found bro");
+            }
 
-            _petService.UpdatePet(pet);
+            try
+            {
+                return updatePet;
+            } catch (Exception g) 
+            {
+                return StatusCode(500, "try again");
+            }
         }
 
         [HttpDelete("{id}")]
         public ActionResult<Pet> Delete(int id)
         {
-            _petService.DeletePet(id);
+            var pet = _petService.DeletePet(id);
+            if (pet == null) 
+            {
+                return StatusCode(404, "did not find pet with id " + id);
+            }
+
+            try
+            {
+                return _petService.DeletePet(id);
+            }
+            catch (Exception g) 
+            {
+                return StatusCode(500, "Task Fucked up");
+            }
         }
 
         
-        [HttpGet{"{type}"}]
+        [HttpGet("{type}")]
         [Route("[action]/{type}")]
         public ActionResult<List<Pet>> getFilteredPets(string type)
         {
-            return _petService.GetAllByType(type);
+            try
+            {
+                return _petService.GetAllByType(type);
+            } catch (Exception g) 
+            {
+                return StatusCode(500, "fucked up");
+            }
+            
         }
     }
 }
