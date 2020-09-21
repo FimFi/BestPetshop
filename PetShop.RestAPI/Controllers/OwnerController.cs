@@ -22,16 +22,24 @@ namespace PetShop.RestAPI.Controllers
         }
         // GET: api/<PetShopController>
         [HttpGet]
-        public IEnumerable<Owner> Get()
+        public ActionResult<IEnumerable<Owner>> Get()
         {
             return _ownerService.GetAllOwners();
         }
 
         // GET api/<PetShopController>/5
         [HttpGet("{id}")]
-        public Owner Get(int id)
+        public ActionResult<Owner> Get(int id)
         {
-            return _ownerService.FindOwnerById(id);
+            try
+            {
+                return _ownerService.FindOwnerById(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Id must be greater than 0");
+            }        
+            
         }
 
         // POST api/<PetShopController>
@@ -52,16 +60,22 @@ namespace PetShop.RestAPI.Controllers
 
         // PUT api/<PetShopController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Owner owner)
+        public ActionResult<Owner> Put(int id, [FromBody] Owner owner)
         {
             _ownerService.UpdateOwner(owner);
         }
 
         // DELETE api/<PetShopController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Owner> Delete(int id)
         {
             _ownerService.DeleteOwner(id);
+        }
+
+        [HttpDelete{"byType"}]
+        public ActionResult<List<PetType>> getFilteredOwners(string name)
+        {
+           return _ownerService.GetAllByName(name);
         }
     }
 }

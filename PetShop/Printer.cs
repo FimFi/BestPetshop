@@ -20,13 +20,13 @@ namespace PetShop.UI
             {
                 var pet1 = new Pet()
                 {
-                    Name = "Johnny",
-                    Type = "Leguan",
-                    BirthDate = new DateTime(2018, 6, 10),
-                    SoldDate = new DateTime(2019, 02, 06),
-                    Color = "Green",
-                    PreviousOwner = "Billy Joel",
-                    Price = 1500
+                    Name = "Mads",
+                    Type = "Banan",
+                    BirthDate = new DateTime(2015, 08, 09),
+                    SoldDate = new DateTime(2020, 12, 18),
+                    Color = "Gul",
+                    PreviousOwner = "Mads Langer",
+                    Price = 150000
                 };
                 _petService.CreatePet(pet1);
 
@@ -34,37 +34,15 @@ namespace PetShop.UI
                 {
                     Name = "Bravo",
                     Type = "Kongecobra",
-                    BirthDate = new DateTime(2010, 05, 20),
-                    SoldDate = new DateTime(2012, 08, 12),
-                    Color = "Orange",
-                    PreviousOwner = "Prins Henrik",
-                    Price = 5000
+                    BirthDate = new DateTime(2010, 04, 20),
+                    SoldDate = new DateTime(2010, 10, 16),
+                    Color = "Blå",
+                    PreviousOwner = "Kalle kanin",
+                    Price = 50200
                 };
                 _petService.CreatePet(pet2);
 
-                var pet3 = new Pet()
-                {
-                    Name = "Abraham",
-                    Type = "Tick",
-                    BirthDate = new DateTime(2019, 08, 29),
-                    SoldDate = new DateTime(2019, 08, 29),
-                    Color = "Blue",
-                    PreviousOwner = "Georg Jensen",
-                    Price = 5
-                };
-                _petService.CreatePet(pet3);
-
-                var pet4 = new Pet()
-                {
-                    Name = "Kasper",
-                    Type = "Evolution dyret",
-                    BirthDate = new DateTime(1809, 02, 12),
-                    SoldDate = new DateTime(2002, 10, 16),
-                    Color = "Blue",
-                    PreviousOwner = "Leonardo DaVinci",
-                    Price = 50000
-                };
-                _petService.CreatePet(pet4);
+                
             }
         }
 

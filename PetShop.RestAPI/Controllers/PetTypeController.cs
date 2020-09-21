@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.ApplicationServices;
@@ -36,7 +37,7 @@ namespace PetShop.RestAPI.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Id must be greater than 0");
+                return StatusCode(500, "FAILED");
             }              
         }
 
@@ -44,6 +45,11 @@ namespace PetShop.RestAPI.Controllers
         [HttpPost]
         public ActionResult<PetType> Post([FromBody] PetType petType)
         {
+            if(string.IsNullOrEmpty(petType.Type))
+            {
+                return BadRequest("Type is required for creating a petType");
+            }
+
             return _petTypeService.CreatePetType(petType);
         }
 
@@ -59,6 +65,13 @@ namespace PetShop.RestAPI.Controllers
         public ActionResult<PetType> Delete(int id)
         {
             _petTypeService.DeletePetType(id);
+        }
+
+        
+        [HttpDelete{"byType"}]
+        public ActionResult<List<PetType>> getFilteredPetTypes(string type)
+        {
+           
         }
     }
 }

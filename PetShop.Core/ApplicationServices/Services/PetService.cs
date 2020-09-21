@@ -44,7 +44,7 @@ namespace PetShop.Core.ApplicationServices.Services
             return _petRepo.ReadPets().ToList();
         }
 
-        public List<Pet> GetAllByType(PetType type)
+        public List<Pet> GetAllByType(string type)
         {
             var list = _petRepo.ReadPets();
             var query = list.Where(pet => pet.Type.Equals(type));
