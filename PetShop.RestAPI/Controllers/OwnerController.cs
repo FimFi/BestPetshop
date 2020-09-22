@@ -72,7 +72,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return updateOwner;
             }
-            catch (Exception g)
+            catch (Exception)
             {
                 return StatusCode(500, "try again");
             }
@@ -92,7 +92,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return _ownerService.DeleteOwner(id);
             }
-            catch (Exception g)
+            catch (Exception)
             {
                 return StatusCode(500, "Task Fucked up");
             }
@@ -106,7 +106,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return _ownerService.GetAllByName(name);
             }
-            catch (Exception g)
+            catch (Exception)
             {
                 return StatusCode(500, "fucked up");
             }

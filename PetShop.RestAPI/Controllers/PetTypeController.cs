@@ -67,7 +67,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return updatePetType;
             }
-            catch (Exception g)
+            catch (Exception)
             {
                 return StatusCode(500, "try again");
             }
@@ -87,7 +87,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return _petTypeService.DeletePetType(id);
             }
-            catch (Exception g)
+            catch (Exception)
             {
                 return StatusCode(500, "Task Fucked up");
             }
@@ -103,7 +103,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return _petTypeService.GetAllByPetType(type);
             }
-            catch (Exception g)
+            catch (Exception)
             {
                 return StatusCode(500, "fucked up");
             }
