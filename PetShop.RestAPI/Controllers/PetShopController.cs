@@ -49,7 +49,7 @@ namespace PetShop.RestAPI.Controllers
             
         }
 
-        // JSON
+        
         [HttpPost]
         public ActionResult<Pet> Post([FromBody] Pet pet)
         {
@@ -78,7 +78,7 @@ namespace PetShop.RestAPI.Controllers
             try
             {
                 return updatePet;
-            } catch (Exception) 
+            } catch (Exception g) 
             {
                 return StatusCode(500, "try again");
             }
@@ -97,7 +97,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 return _petService.DeletePet(id);
             }
-            catch (Exception) 
+            catch (Exception g) 
             {
                 return StatusCode(500, "Task Fucked up");
             }
@@ -111,7 +111,7 @@ namespace PetShop.RestAPI.Controllers
             try
             {
                 return _petService.GetAllByType(type);
-            } catch (Exception) 
+            } catch (Exception g) 
             {
                 return StatusCode(500, "fucked up");
             }

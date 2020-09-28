@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using PetShop.Core.ApplicationServices;
 using PetShop.Core.ApplicationServices.Services;
 using PetShop.Core.DomainServices;
-using PetShop.Infrastructure.Data2;
+using PetShop.Infrastructure.Data;
 
 namespace PetShop.RestAPI
 {
@@ -30,10 +29,6 @@ namespace PetShop.RestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PetShopContext>(
-                 opt => opt.UseInMemoryDatabase("TheDB")
-                 );
-
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
 
@@ -60,7 +55,7 @@ namespace PetShop.RestAPI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //if (env.IsDevelopment())
-           // {
+            //{
                 app.UseDeveloperExceptionPage();
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
@@ -69,7 +64,7 @@ namespace PetShop.RestAPI
                     var petTypeRepo = scope.ServiceProvider.GetService<IPetTypeRepository>();
                     new DataInit(petRepo, ownerRepo, petTypeRepo).InitData();
                 }
-           // }
+            //}
 
             app.UseHttpsRedirection();
 
