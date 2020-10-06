@@ -55,7 +55,7 @@ namespace PetShop.Core.ApplicationServices.Services
         {
             var list = _ownerRepo.ReadOwners();
             var query = list.Where(owner => owner.Name.Equals(name));
-            query.OrderBy(owner => owner.Name;
+            query.OrderBy(owner => owner.Name);
             return query.ToList();
         }
     }
