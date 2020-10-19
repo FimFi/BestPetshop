@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Petshop.Infrastructure.SQLData.Repo
 {
-    public class OwnerRepositry : IOwnerRepository
+    public class OwnerRepository : IOwnerRepository
     {
         public Owner Create(Owner owner)
         {
