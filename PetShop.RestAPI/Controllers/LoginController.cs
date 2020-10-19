@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PetShop.RestAPI.Controllers
 {
-    [Route("/token")]
+    [Route("api/[controller]")]
+    [ApiController]
     public class LoginController : Controller
     {
         private IUserRepository repository;
